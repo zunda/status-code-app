@@ -20,7 +20,6 @@ func writeUsage(w http.ResponseWriter) {
 `)
 }
 
-
 func statusCodeServer(w http.ResponseWriter, r *http.Request) {
 	s := strings.SplitN(r.URL.Path, "/", 3)
 	c, err := strconv.Atoi(s[1])
