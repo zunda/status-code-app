@@ -9,11 +9,23 @@ import (
 	"strings"
 )
 
+func writeUsage(w http.ResponseWriter) {
+	fmt.Fprintf(w, `
+<html><title>status-code-app</title><body><h1>status-code-app</h1>
+<p>Hi, I'll respond to requests with specified status code. Try something like</p>
+<ul>
+<li><a href="/418">/418</a> - I'm a teapot.
+</ul>
+</body></html>
+`)
+}
+
+
 func statusCodeServer(w http.ResponseWriter, r *http.Request) {
 	s := strings.SplitN(r.URL.Path, "/", 3)
 	c, err := strconv.Atoi(s[1])
 	if err != nil {
-		fmt.Fprintf(w, "Specify desired status code after /")
+		writeUsage(w)
 		return
 	}
 
