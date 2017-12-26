@@ -10,6 +10,8 @@ import (
 	"time"
 )
 
+const RepositoryUrl = "https://github.com/zunda/status-code-app/"
+
 func writeUsage(w http.ResponseWriter) {
 	fmt.Fprintf(w, `
 <html><title>status-code-app</title><body><h1>status-code-app</h1>
@@ -19,8 +21,9 @@ func writeUsage(w http.ResponseWriter) {
 <li><a href="/H12">/H12</a> - Request timeout
 <li><a href="/H13">/H13</a> - Connection closed without response
 </ul>
+<p>Source code is available at <a href="%s">%s</a></p>
 </body></html>
-`)
+`, RepositoryUrl, RepositoryUrl)
 }
 
 func h12Server(w http.ResponseWriter, r *http.Request) {
