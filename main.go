@@ -48,6 +48,16 @@ func h13Server(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hi. I'm unavailable to trigger an H13.")
 }
 
+func writeStandardResponse(w http.ResponseWriter, code int) {
+	t := http.StatusText(code)
+	if t == "" {
+		t = "unknown status code"
+	}
+	log.Printf("Responding with the status code %d - %s", code, t)
+	w.WriteHeader(code)
+	fmt.Fprintf(w, "Hi. I'm responding with the status code %d - %s.\n", code, t)
+}
+
 func statusCodeServer(w http.ResponseWriter, r *http.Request) {
 	s := strings.SplitN(r.URL.Path, "/", 3)
 	c, err := strconv.Atoi(s[1])
@@ -55,14 +65,7 @@ func statusCodeServer(w http.ResponseWriter, r *http.Request) {
 		writeUsage(w)
 		return
 	}
-
-	t := http.StatusText(c)
-	if t == "" {
-		t = "unknown status code"
-	}
-	log.Printf("Responding with the status code %d - %s", c, t)
-	w.WriteHeader(c)
-	fmt.Fprintf(w, "Hi. I'm responding with the status code %d - %s.\n", c, t)
+	writeStandardResponse(w, c)
 }
 
 func main() {
