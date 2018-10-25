@@ -3,7 +3,4 @@
 	"ignore": "test",
 	"package": [],
 	"rootPath": "status-code-app",
-	"heroku": {
-		"goVersion": "go1.9"
-	}
 }
