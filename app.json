@@ -1,0 +1,6 @@
+{
+  "name": "Status code app",
+  "description": "An app that responses with arbitrary status code",
+  "repository": "https://github.com/zunda/status-code-app",
+  "keywords": ["go", "teapot"]
+}
