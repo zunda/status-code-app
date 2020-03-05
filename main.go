@@ -56,7 +56,7 @@ func h18Server(w http.ResponseWriter, r *http.Request) {
 		if err == nil {
 			fmt.Fprintf(conn, "HTTP/1.1 200 OK\r\nContent-length: 13\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nHello, World\n")
 			conn.Close()
-			log.Printf("Responded and closed connection to trigger an H13 - Connection closed without response")
+			log.Printf("Responded and closed connection to trigger an H18 - Connection closed without response")
 			return
 		}
 	}
