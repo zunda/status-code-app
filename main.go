@@ -39,8 +39,8 @@ func h13Server(w http.ResponseWriter, r *http.Request) {
 	if ok {
 		conn, _, err := hj.Hijack()
 		if err == nil {
-			log.Printf("Closing writer to trigger an H13 - Connection closed without response")
 			conn.Close()
+			log.Printf("Closed connection to trigger an H13 - Connection closed without response")
 			return
 		}
 	}
@@ -50,13 +50,13 @@ func h13Server(w http.ResponseWriter, r *http.Request) {
 }
 
 func h18Server(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Responding before reading request trigger an H18 - Server Request Interrupted")
 	hj, ok := w.(http.Hijacker)
 	if ok {
 		conn, _, err := hj.Hijack()
 		if err == nil {
 			fmt.Fprintf(conn, "HTTP/1.1 200 OK\r\nContent-length: 13\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nHello, World\n")
 			conn.Close()
+			log.Printf("Responded and closed connection to trigger an H13 - Connection closed without response")
 			return
 		}
 	}
